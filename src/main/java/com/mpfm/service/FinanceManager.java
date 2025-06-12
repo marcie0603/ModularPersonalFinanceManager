@@ -26,4 +26,10 @@ public class FinanceManager {
     public List<Entry> getEntriesByType(EntryType type) {
         return repository.findByType(type);
     }
+
+    public double getTotalByType(EntryType type) {
+        return getEntriesByType(type).stream()
+                .mapToDouble(Entry::getAmount)
+                .sum();
+    }
 }
