@@ -19,6 +19,10 @@ public class FinanceManager {
         repository.addEntry(entry);
     }
 
+    public void addEntry(Entry entry){
+        repository.addEntry(entry);
+    }
+
     public List<Entry> getAllEntries() {
         return repository.getAllEntries();
     }
