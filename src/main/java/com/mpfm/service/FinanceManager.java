@@ -36,4 +36,9 @@ public class FinanceManager {
                 .mapToDouble(Entry::getAmount)
                 .sum();
     }
+
+    public double getNetBalance() {
+        return getTotalByType(EntryType.INCOME) - getTotalByType(EntryType.EXPENSE);
+    }
+
 }

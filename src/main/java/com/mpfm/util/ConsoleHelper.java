@@ -40,6 +40,9 @@ public class ConsoleHelper {
         System.out.println("1. Add Entry");
         System.out.println("2. View All Entries");
         System.out.println("3. View Entries By Type");
+        System.out.println("4. View Total Income ");
+        System.out.println("5. View Total Expenses");
+        System.out.println("6. View Net Balance");
         System.out.println("0. Exit");
     }
 

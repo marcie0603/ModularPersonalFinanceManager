@@ -40,6 +40,9 @@ public class Main {
                         filtered.forEach(System.out::println);
                     }
                 }
+                case 4 -> System.out.println("Total Income: " + manager.getTotalByType(EntryType.INCOME));
+                case 5 -> System.out.println("Total Expenses: " + manager.getTotalByType(EntryType.EXPENSE));
+                case 6 -> System.out.println("Net Balance: " + manager.getNetBalance());
                 case 0 -> {
                     running = false;
                     System.out.println("Exiting application. Goodbye!");
