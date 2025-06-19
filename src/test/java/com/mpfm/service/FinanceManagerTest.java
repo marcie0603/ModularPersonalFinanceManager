@@ -42,10 +42,19 @@ public class FinanceManagerTest {
 
     @Test
     void testGetTotalByType() {
-        manager.addEntry(new Entry(EntryType.EXPENSE, 50.0, "Coffee", LocalDate.now()));
-        manager.addEntry(new Entry(EntryType.EXPENSE, 150.0, "Groceries", LocalDate.now()));
+        manager.addEntry(new Entry(EntryType.INCOME, 1000.0, "Salary", LocalDate.now()));
+        manager.addEntry(new Entry(EntryType.INCOME, 500.0, "Freelance", LocalDate.now()));
+        manager.addEntry(new Entry(EntryType.EXPENSE, 300.0, "Groceries", LocalDate.now()));
 
-        double totalExpenses = manager.getTotalByType(EntryType.EXPENSE);
-        assertEquals(200.0, totalExpenses);
+        assertEquals(1500.0, manager.getTotalByType(EntryType.INCOME));
+        assertEquals(300.0, manager.getTotalByType(EntryType.EXPENSE));
+    }
+
+    @Test
+    void testGetNetBalance() {
+        manager.addEntry(new Entry(EntryType.INCOME, 2000.0, "Main Job", LocalDate.now()));
+        manager.addEntry(new Entry(EntryType.EXPENSE, 800.0, "Rent", LocalDate.now()));
+
+        assertEquals(1200.0, manager.getNetBalance());
     }
 }
