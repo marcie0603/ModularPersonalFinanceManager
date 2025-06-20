@@ -5,6 +5,8 @@ import com.mpfm.repository.EntryRepository;
 import com.mpfm.service.FinanceManager;
 import com.mpfm.util.ConsoleHelper;
 
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
         FinanceManager manager = new FinanceManager(new EntryRepository());
@@ -43,6 +45,16 @@ public class Main {
                 case 4 -> System.out.println("Total Income: " + manager.getTotalByType(EntryType.INCOME));
                 case 5 -> System.out.println("Total Expenses: " + manager.getTotalByType(EntryType.EXPENSE));
                 case 6 -> System.out.println("Net Balance: " + manager.getNetBalance());
+                case 7 -> {
+                    LocalDate start = LocalDate.parse(ConsoleHelper.prompt("Start date (YYYY-MM-DD)"));
+                    LocalDate end = LocalDate.parse(ConsoleHelper.prompt("End date (YYYY-MM-DD)"));
+                    var filtered = manager.getEntriesBetween(start, end);
+                    if (filtered.isEmpty()) {
+                        System.out.println("No entries found in the given date range");
+                    } else {
+                        filtered.forEach(System.out::println);
+                    }
+                }
                 case 0 -> {
                     running = false;
                     System.out.println("Exiting application. Goodbye!");

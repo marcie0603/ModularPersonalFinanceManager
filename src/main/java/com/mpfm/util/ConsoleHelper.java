@@ -43,6 +43,7 @@ public class ConsoleHelper {
         System.out.println("4. View Total Income ");
         System.out.println("5. View Total Expenses");
         System.out.println("6. View Net Balance");
+        System.out.println("7. View Entries By Date Range");
         System.out.println("0. Exit");
     }
 

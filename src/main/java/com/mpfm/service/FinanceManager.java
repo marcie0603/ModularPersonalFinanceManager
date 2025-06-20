@@ -4,7 +4,9 @@ import com.mpfm.model.Entry;
 import com.mpfm.model.EntryType;
 import com.mpfm.repository.EntryRepository;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FinanceManager {
 
@@ -39,6 +41,12 @@ public class FinanceManager {
 
     public double getNetBalance() {
         return getTotalByType(EntryType.INCOME) - getTotalByType(EntryType.EXPENSE);
+    }
+
+    public List<Entry> getEntriesBetween(LocalDate start, LocalDate end){
+        return repository.getAllEntries().stream()
+                .filter(entry -> !entry.getDate().isBefore(start) && !entry.getDate().isAfter(end))
+                .collect(Collectors.toList());
     }
 
 }
