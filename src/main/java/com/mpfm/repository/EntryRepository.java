@@ -9,10 +9,15 @@ import java.util.stream.Collectors;
 
 public class EntryRepository {
 
-    private final List<Entry> entries = new ArrayList<>();
+    private final List<Entry> entries;
+
+    public EntryRepository() {
+        this.entries = EntryStorage.load();
+    }
 
     public void addEntry(Entry entry) {
         entries.add(entry);
+        EntryStorage.save(entries);
     }
 
     public List<Entry> getAllEntries() {

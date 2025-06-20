@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EntryRepositoryTest {
 
@@ -17,6 +18,7 @@ public class EntryRepositoryTest {
     @BeforeEach
     void setUp() {
         repository = new EntryRepository();
+        repository.clearEntries();
     }
 
     @Test
@@ -40,5 +42,12 @@ public class EntryRepositoryTest {
         List<Entry> incomes = repository.findByType(EntryType.INCOME);
         assertEquals(1, incomes.size());
         assertEquals("Freelance", incomes.get(0).getDescription());
+    }
+
+    @Test
+    void testClearEntries() {
+        repository.addEntry(new Entry(EntryType.EXPENSE, 30.0, "Snacks", LocalDate.now()));
+        repository.clearEntries();
+        assertTrue(repository.getAllEntries().isEmpty());
     }
 }
